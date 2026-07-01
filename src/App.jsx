@@ -5,7 +5,6 @@ import { findConflicts } from './lib/conflicts.js'
 import { useSelection } from './hooks/useSelection.js'
 import Toolbar from './components/Toolbar.jsx'
 import Timeline from './components/Timeline.jsx'
-import ConflictBanner from './components/ConflictBanner.jsx'
 
 // normalise une chaîne pour la recherche (minuscule + sans accents)
 function normalize(s) {
@@ -19,7 +18,17 @@ export default function App() {
   const prepared = useMemo(() => prepareTimetable(rawData), [])
   const allActs = useMemo(() => flattenActs(prepared.stages), [prepared])
 
-  const { selected, toggle, clear, isSelected } = useSelection()
+  const {
+    selected,
+    toggle,
+    clear,
+    imported,
+    importName,
+    importMerge,
+    clearImport,
+    ownerOf,
+    hasImport,
+  } = useSelection()
   const [query, setQuery] = useState('')
   const [myProgramOnly, setMyProgramOnly] = useState(false)
 
@@ -31,19 +40,19 @@ export default function App() {
     (normalize(act.artist).includes(normQuery) ||
       (act.setName && normalize(act.setName).includes(normQuery)))
 
-  // sets sélectionnés (enrichis) + conflits
-  const selectedActs = useMemo(
-    () => allActs.filter((a) => selected.has(a.id)),
-    [allActs, selected],
+  // programme affiché = union de ma sélection et de celle importée (fusion)
+  const unionActs = useMemo(
+    () => allActs.filter((a) => selected.has(a.id) || imported.has(a.id)),
+    [allActs, selected, imported],
   )
-  const { pairs: conflictPairs, conflictIds } = useMemo(
-    () => findConflicts(selectedActs),
-    [selectedActs],
+  const { pairs: conflictPairs, conflictIntervalsByAct } = useMemo(
+    () => findConflicts(unionActs),
+    [unionActs],
   )
 
-  // compteurs : nombre de sets DJ sélectionnés + durée totale
-  const djSelectedCount = selectedActs.filter((a) => a.type === 'dj').length
-  const totalSelectedMin = selectedActs.reduce((sum, a) => sum + a.duration, 0)
+  // compteurs : nombre de sets DJ (programme fusionné) + durée totale
+  const djSelectedCount = unionActs.filter((a) => a.type === 'dj').length
+  const totalSelectedMin = unionActs.reduce((sum, a) => sum + a.duration, 0)
 
   return (
     <div className="app">
@@ -57,21 +66,23 @@ export default function App() {
         selectedCount={djSelectedCount}
         totalSelectedMin={totalSelectedMin}
         conflictCount={conflictPairs.length}
-        selectedIds={[...selected]}
-        selectedActs={selectedActs}
+        shareIds={[...selected]}
+        selectedActs={unionActs}
         meta={{ festival: rawData.festival, festivalDate: rawData.festivalDate }}
         onClear={clear}
+        onImport={importMerge}
+        onClearImport={clearImport}
+        hasImport={hasImport}
+        importName={importName}
         timelineRef={timelineRef}
       />
-
-      <ConflictBanner pairs={conflictPairs} />
 
       <Timeline
         ref={timelineRef}
         prepared={prepared}
-        isSelected={isSelected}
+        ownerOf={ownerOf}
         onToggle={toggle}
-        conflictIds={conflictIds}
+        conflictIntervalsByAct={conflictIntervalsByAct}
         myProgramOnly={myProgramOnly}
         matchesQuery={matchesQuery}
         hasQuery={normQuery.length > 0}

@@ -13,6 +13,13 @@
   --purple: #5537b0;
   --grey: #868e96;
   --danger: #dc3545;
+  --cyan: #1fc7d4;      /* couleur "l'ami" (2e utilisateur) */
+  --amber: #ffcf47;     /* tranches en conflit (jaune rayé, non alarmant) */
+
+  /* fills des sets selon le propriétaire */
+  --fill-mine: linear-gradient(120deg, #ed30c9, #915ff9);
+  --fill-theirs: linear-gradient(120deg, #1fc7d4, #2f7fe0);
+  --fill-both: linear-gradient(120deg, #ed30c9 0%, #915ff9 50%, #1fc7d4 100%);
 
   --brand-grad: linear-gradient(120deg, #ed30c9 0%, #915ff9 55%, #5537b0 100%);
   --silver-grad: linear-gradient(170deg, #f6f8fa 0%, #d3dae1 55%, #b9c2cb 100%);
@@ -159,20 +166,54 @@ body {
   color: var(--grey);
 }
 .toolbar-stats strong { color: var(--light); }
-.stat-warning { color: var(--danger); font-weight: 700; }
+.stat-warning { color: var(--amber); font-weight: 700; }
 
-/* ---------- Bandeau conflits ---------- */
-.conflict-banner {
-  margin: 0;
-  padding: 10px 18px;
-  background: rgba(220, 53, 69, 0.12);
-  border-bottom: 1px solid rgba(220, 53, 69, 0.4);
+/* ---------- Panneau de fusion ---------- */
+.btn-active { border-color: var(--cyan); background: rgba(31, 199, 212, 0.14); }
+
+.merge-panel {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--charcoal-darker);
+  border: 1px solid rgba(31, 199, 212, 0.35);
 }
-.conflict-title { font-weight: 700; color: #ff8a95; margin-bottom: 6px; font-size: 14px; }
-.conflict-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.conflict-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; }
-.conflict-act em { color: var(--grey); font-style: normal; font-size: 12px; }
-.conflict-vs { color: var(--danger); font-weight: 700; }
+.merge-fields { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.merge-input, .merge-name {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--charcoal-dark);
+  color: var(--light);
+  font-size: 14px;
+  font-family: var(--font-body);
+  outline: none;
+}
+.merge-input { flex: 1 1 320px; min-width: 0; }
+.merge-name { flex: 0 1 180px; }
+.merge-input:focus, .merge-name:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(31, 199, 212, 0.22);
+}
+.merge-hint { margin: 0; font-size: 12px; color: var(--grey); line-height: 1.4; }
+.merge-error { margin: 0; font-size: 13px; font-weight: 600; color: #ff8a95; }
+
+/* légende des couleurs quand une fusion est active */
+.merge-legend { display: inline-flex; align-items: center; gap: 12px; }
+.legend-item { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--light); }
+.legend-swatch { width: 14px; height: 14px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35); }
+.swatch-mine { background: var(--fill-mine); }
+.swatch-theirs { background: var(--fill-theirs); }
+.swatch-both { background: var(--fill-both); }
+.legend-clear {
+  border: none; background: none; cursor: pointer;
+  color: var(--grey); font-size: 13px; line-height: 1; padding: 2px 4px;
+}
+.legend-clear:hover { color: var(--light); }
 
 /* ---------- Fresque ---------- */
 .timeline {
@@ -268,7 +309,7 @@ body {
 .act-block:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); z-index: 3; }
 .act-block:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; }
 
-.act-body { display: flex; flex-direction: column; gap: 2px; height: 100%; overflow: hidden; }
+.act-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 2px; height: 100%; overflow: hidden; }
 .act-artist {
   display: flex; align-items: center; gap: 6px;
   font-family: var(--font-display);
@@ -290,26 +331,48 @@ body {
   font-size: 9px; font-weight: 800; letter-spacing: 0.04em;
   padding: 1px 5px; border-radius: 4px;
 }
-.act-check { position: absolute; top: 4px; right: 6px; font-size: 13px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-.act-warn { position: absolute; top: 4px; right: 6px; font-size: 13px; }
+.act-check { position: absolute; top: 4px; right: 6px; z-index: 3; font-size: 13px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
 
-/* état sélectionné */
+/* tranche de temps en conflit : bande jaune légèrement rayée qui « coupe » le set */
+.act-conflict-slice {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0; /* au-dessus du fond, sous le texte (.act-body est en z-index 1) */
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 207, 71, 0.85) 0,
+    rgba(255, 207, 71, 0.85) 5px,
+    rgba(255, 207, 71, 0.32) 5px,
+    rgba(255, 207, 71, 0.32) 10px
+  );
+  box-shadow: inset 1px 0 0 rgba(180, 130, 0, 0.6), inset -1px 0 0 rgba(180, 130, 0, 0.6);
+}
+
+/* état sélectionné (commun aux trois propriétaires) */
 .act-block.is-selected {
-  background: var(--brand-grad);
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 14px rgba(237, 48, 201, 0.45);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 .act-block.is-selected .act-setname { color: rgba(255, 255, 255, 0.9); }
 .act-block.is-selected .act-time { opacity: 0.9; }
 .act-block.is-selected .act-tag { background: #fff; color: var(--magenta); }
 
-/* conflit (prioritaire visuellement) */
-.act-block.is-conflict {
-  border: 2px solid var(--danger);
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.35), 0 4px 14px rgba(220, 53, 69, 0.4);
+/* couleurs par propriétaire — « entoure » chaque set selon qui l'a choisi */
+.act-block.owner-mine {
+  background: var(--fill-mine);
+  box-shadow: 0 0 0 2px rgba(237, 48, 201, 0.9), 0 4px 12px rgba(237, 48, 201, 0.4);
 }
-.act-block.is-conflict.is-selected { background: linear-gradient(120deg, #dc3545, #ed30c9); }
+.act-block.owner-theirs {
+  background: var(--fill-theirs);
+  box-shadow: 0 0 0 2px rgba(31, 199, 212, 0.95), 0 4px 12px rgba(31, 199, 212, 0.4);
+}
+/* les deux ont choisi ce set → mix des deux couleurs */
+.act-block.owner-both {
+  background: var(--fill-both);
+  box-shadow: 0 0 0 2px rgba(145, 95, 249, 1), 0 4px 12px rgba(145, 95, 249, 0.45);
+}
 
 /* cérémonies (kick off, endshow) : marqueurs non cliquables */
 .act-block.act-ceremony {

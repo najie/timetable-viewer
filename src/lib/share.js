@@ -33,6 +33,28 @@ export function readSelectionFromUrl() {
   return decodeSelection(params.get(SEL_PARAM))
 }
 
+/**
+ * Extrait une liste d'ids depuis ce qu'un utilisateur colle : une URL de partage
+ * complète (…?sel=…), un fragment « sel=… », ou directement la graine encodée.
+ * @returns {string[]} liste d'ids (vide si rien d'exploitable)
+ */
+export function parseSharedInput(input) {
+  const s = (input || '').trim()
+  if (!s) return []
+  // URL complète avec ?sel=…
+  try {
+    const p = new URL(s).searchParams.get(SEL_PARAM)
+    if (p) return decodeSelection(p)
+  } catch {
+    /* pas une URL absolue : on tente les autres formes */
+  }
+  // fragment « sel=… » n'importe où dans la chaîne
+  const m = s.match(/[?&]?sel=([^&\s]+)/)
+  if (m) return decodeSelection(m[1])
+  // sinon on suppose que c'est directement la graine encodée
+  return decodeSelection(s)
+}
+
 /** Construit une URL partageable pointant sur la sélection donnée. */
 export function buildShareUrl(ids) {
   const url = new URL(window.location.href)

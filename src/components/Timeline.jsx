@@ -4,7 +4,7 @@ import TimeAxis from './TimeAxis.jsx'
 import StageRow from './StageRow.jsx'
 
 const Timeline = forwardRef(function Timeline(
-  { prepared, isSelected, onToggle, conflictIds, myProgramOnly, matchesQuery, hasQuery },
+  { prepared, ownerOf, onToggle, conflictIntervalsByAct, myProgramOnly, matchesQuery, hasQuery },
   ref,
 ) {
   const { stages, startMin, ticks, totalMin } = prepared
@@ -21,9 +21,9 @@ const Timeline = forwardRef(function Timeline(
             stage={stage}
             startMin={startMin}
             trackWidth={trackWidth}
-            isSelected={isSelected}
+            ownerOf={ownerOf}
             onToggle={onToggle}
-            conflictIds={conflictIds}
+            conflictIntervalsByAct={conflictIntervalsByAct}
             myProgramOnly={myProgramOnly}
             matchesQuery={matchesQuery}
             hasQuery={hasQuery}
