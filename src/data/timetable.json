@@ -1,0 +1,107 @@
+{
+  "festival": "VWAB Festival",
+  "subtitle": "The Classics Cup",
+  "festivalDate": "2026-03-21",
+  "dayStart": "13:00",
+  "dayEnd": "01:00",
+  "stages": [
+    {
+      "id": "classics-arena",
+      "name": "CLASSICS ARENA",
+      "host": "MC DA SYNDROME",
+      "acts": [
+        { "id": "classics-arena-geck-o", "artist": "GECK-O", "start": "13:00", "end": "14:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-the-pitcher", "artist": "THE PITCHER", "start": "14:00", "end": "15:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-max-enforcer-jones", "artist": "MAX ENFORCER & JONES", "start": "15:00", "end": "15:45", "tags": [], "setName": "CLASH OF CLASSICS", "type": "dj" },
+        { "id": "classics-arena-kick-off-ceremony", "artist": "KICK OFF CEREMONY", "start": "15:45", "end": "15:50", "tags": [], "setName": null, "type": "ceremony" },
+        { "id": "classics-arena-wildstylez", "artist": "WILDSTYLEZ", "start": "15:50", "end": "16:45", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-audiofreq-code-black-toneshifterz", "artist": "AUDIOFREQ & CODE BLACK & TONESHIFTERZ", "start": "16:45", "end": "17:45", "tags": [], "setName": "AUSSIE CLASSICS", "type": "dj" },
+        { "id": "classics-arena-coone", "artist": "COONE", "start": "17:45", "end": "18:45", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-noisecontrollers", "artist": "NOISECONTROLLERS", "start": "18:45", "end": "19:15", "tags": ["LIVE"], "setName": null, "type": "dj" },
+        { "id": "classics-arena-bass-modulators", "artist": "BASS MODULATORS", "start": "19:15", "end": "19:45", "tags": [], "setName": "REWIND", "type": "dj" },
+        { "id": "classics-arena-sound-rush", "artist": "SOUND RUSH", "start": "19:45", "end": "20:45", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-adrenalize", "artist": "ADRENALIZE", "start": "20:45", "end": "21:15", "tags": [], "setName": "ALL THE MEMORIES", "type": "dj" },
+        { "id": "classics-arena-d-block-s-te-fan", "artist": "D-BLOCK & S-TE-FAN", "start": "21:15", "end": "22:15", "tags": [], "setName": null, "type": "dj" },
+        { "id": "classics-arena-adaro", "artist": "ADARO", "start": "22:15", "end": "22:50", "tags": [], "setName": "THE HAUNTER OF THE DARK", "type": "dj" },
+        { "id": "classics-arena-endshow", "artist": "ENDSHOW", "start": "22:50", "end": "23:00", "tags": [], "setName": null, "type": "ceremony" }
+      ]
+    },
+    {
+      "id": "fanzone",
+      "name": "VWAB FANZONE",
+      "host": "MC NOLZ",
+      "acts": [
+        { "id": "fanzone-the-beholder", "artist": "THE BEHOLDER", "start": "13:00", "end": "14:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-degos-re-done", "artist": "DEGOS & RE-DONE", "start": "14:00", "end": "15:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-deetox-jason-payne", "artist": "DEETOX & JASON PAYNE", "start": "15:00", "end": "16:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-chain-reaction-luna", "artist": "CHAIN REACTION & LUNA", "start": "16:00", "end": "17:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-bass-chaserz", "artist": "BASS CHASERZ", "start": "17:00", "end": "18:00", "tags": [], "setName": "RETURN OF THE RENEGADES", "type": "dj" },
+        { "id": "fanzone-b-front-titan", "artist": "B-FRONT & TITAN", "start": "18:00", "end": "19:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-crypsis", "artist": "CRYPSIS", "start": "19:00", "end": "19:30", "tags": ["LIVE"], "setName": null, "type": "dj" },
+        { "id": "fanzone-hard-driver", "artist": "HARD DRIVER", "start": "19:30", "end": "20:30", "tags": [], "setName": "NO SLEEP", "type": "dj" },
+        { "id": "fanzone-digital-punk-sub-sonik", "artist": "DIGITAL PUNK & SUB SONIK", "start": "20:30", "end": "21:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "fanzone-e-force-unresolved", "artist": "E-FORCE & UNRESOLVED", "start": "21:30", "end": "22:30", "tags": [], "setName": null, "type": "dj" }
+      ]
+    },
+    {
+      "id": "victory-village",
+      "name": "VICTORY VILLAGE",
+      "host": "MC RENEGADE",
+      "acts": [
+        { "id": "victory-village-royal-s", "artist": "ROYAL S", "start": "13:00", "end": "14:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-low-e-alter-egosz", "artist": "LOW-E & ALTER EGOSZ", "start": "14:00", "end": "15:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-josh-wesz", "artist": "JOSH & WESZ", "start": "15:00", "end": "16:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-demi-kanon", "artist": "DEMI KANON", "start": "16:00", "end": "17:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-audiotricz", "artist": "AUDIOTRICZ", "start": "17:00", "end": "18:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-wasted-penguinz", "artist": "WASTED PENGUINZ", "start": "18:00", "end": "19:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-atmozfears", "artist": "ATMOZFEARS", "start": "19:00", "end": "20:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-frontliner", "artist": "FRONTLINER", "start": "20:00", "end": "21:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-psyko-punkz", "artist": "PSYKO PUNKZ", "start": "21:00", "end": "22:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "victory-village-tatanka", "artist": "TATANKA", "start": "22:00", "end": "23:00", "tags": [], "setName": null, "type": "dj" }
+      ]
+    },
+    {
+      "id": "magic-show",
+      "name": "THE MAGIC SHOW",
+      "host": "MC SHIZZLER",
+      "acts": [
+        { "id": "magic-show-san-miquel-tim-dawes", "artist": "SAN MIQUEL & TIM DAWES", "start": "13:00", "end": "14:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-submotion", "artist": "SUBMOTION", "start": "14:00", "end": "15:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-juized-zero-sanity", "artist": "JUIZED & ZERO SANITY", "start": "15:00", "end": "16:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-the-geminizers", "artist": "THE GEMINIZERS", "start": "16:30", "end": "17:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-the-machine", "artist": "THE MACHINE", "start": "17:30", "end": "18:15", "tags": ["LIVE"], "setName": null, "type": "dj" },
+        { "id": "magic-show-tartaros", "artist": "TARTAROS", "start": "18:15", "end": "19:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-clockartz", "artist": "CLOCKARTZ", "start": "19:30", "end": "20:30", "tags": [], "setName": "CHORD V", "type": "dj" },
+        { "id": "magic-show-chris-one", "artist": "CHRIS ONE", "start": "20:30", "end": "21:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "magic-show-moridin", "artist": "MORIDIN", "start": "21:30", "end": "22:00", "tags": ["LIVE"], "setName": null, "type": "dj" },
+        { "id": "magic-show-solutio-the-is", "artist": "SOLUTIO & THE I'S", "start": "22:00", "end": "23:00", "tags": [], "setName": null, "type": "dj" }
+      ]
+    },
+    {
+      "id": "the-academy",
+      "name": "THE ACADEMY",
+      "host": null,
+      "acts": [
+        { "id": "the-academy-iridium-dj", "artist": "IRIDIUM DJ", "start": "13:00", "end": "14:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-rwnd-b2b-the-force", "artist": "RWND B2B THE FORCE", "start": "14:00", "end": "15:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-maximize", "artist": "MAXIMIZE", "start": "15:00", "end": "15:45", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-the-one", "artist": "THE ONE", "start": "15:45", "end": "16:30", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-twstd", "artist": "TWSTD", "start": "16:30", "end": "17:15", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-envine-b2b-d-stylerz", "artist": "ENVINE B2B D'STYLERZ", "start": "17:15", "end": "18:15", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-a-motion-b2b-resonance", "artist": "A-MOTION B2B RESONANCE", "start": "18:15", "end": "19:15", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-synqro", "artist": "SYNQRO", "start": "19:15", "end": "20:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-the-echoes-of-time", "artist": "THE ECHOES OF TIME", "start": "20:00", "end": "21:00", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-d-verze", "artist": "D-VERZE", "start": "21:00", "end": "21:45", "tags": [], "setName": null, "type": "dj" },
+        { "id": "the-academy-monkey-kong-x-pander", "artist": "MONKEY KONG VS X-PANDER", "start": "21:45", "end": "22:30", "tags": [], "setName": null, "type": "dj" }
+      ]
+    },
+    {
+      "id": "the-after",
+      "name": "VWAB — THE AFTER",
+      "host": "MC DA SYNDROME",
+      "acts": [
+        { "id": "the-after-jason-payne-jones-sub-sonik", "artist": "JASON PAYNE VS JONES VS SUB SONIK", "start": "23:00", "end": "01:00", "tags": [], "setName": "THE THIRD HALF", "type": "dj" }
+      ]
+    }
+  ]
+}
